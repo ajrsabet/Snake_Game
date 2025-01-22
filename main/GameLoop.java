@@ -1,22 +1,30 @@
+// This will control the flow of the game
+// We can start with turn based and change it to time based later
 package main;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
+import ui.*;
 
 public class GameLoop {
-    private Timeline timeline;
+    // Create connection to methods in other packages
+    GameDisplay display = new ui.GameDisplay();
+    Console console = new ui.Console();
 
-    public GameLoop(Runnable updater) {
-        timeline = new Timeline(new KeyFrame(Duration.millis(16), e -> updater.run()));
-        timeline.setCycleCount(Timeline.INDEFINITE);
+    public GameLoop() {
+        // while session == true
+
+        // Display game, refresh each move/duration
+        display.screen();
+
+        // User movement input
+
+        //
     }
 
     public void start() {
-        timeline.play();
+
     }
 
     public void stop() {
-        timeline.stop();
+
     }
 }

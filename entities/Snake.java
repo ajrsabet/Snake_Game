@@ -3,31 +3,35 @@ package entities;
 import java.util.LinkedList;
 
 public class Snake {
-    private LinkedList<Segment> segments;
+    // Linked list
 
     public Snake(int length) {
-        segments = new LinkedList<>();
-        for (int i = 0; i < length; i++) {
-            segments.add(new Segment(100 + i * 20, 100)); // Adjust starting possition
-        }
+
     }
 
     // get segments
 
     // move forward
     public void move(int dx, int dy) {
-
+        // remove last segment, add to front
     }
 
     // move left
     public void moveLeft() {
+        // change segment direction
 
+        // add new segment in new direction
     }
 
     // move right
     public void moveRight() {
+        // change segment direction
 
+        // add new segment in new direction
     }
 
     // grow
+    public void grow() {
+        // add segment to end of snake
+    }
 }
