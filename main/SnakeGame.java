@@ -2,14 +2,14 @@ package main;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.GameScene;
 
-public class CentipedeGame extends Application {
+public class SnakeGame extends Application {
     @Override
     public void start(Stage stage) {
-        Pane root = new Pane(); // Main container
-        Scene scene = new Scene(root, 800, 600); // Set width and height
+        GameScene gameScene = new GameScene(); // Main container
+        Scene scene = new Scene(gameScene.getRoot(), 800, 600); // Set width and height
         stage.setTitle("Centipede Game");
         stage.setScene(scene);
         stage.show();

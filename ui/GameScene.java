@@ -1,9 +1,16 @@
 package ui;
 
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 public class GameScene {
+    private Pane root;
 
+    public GameScene() {
+        root = new Pane();
+        // Initialize game elements and add them to the root pane
+    }
+
+    public Pane getRoot() {
+        return root;
+    }
 }
