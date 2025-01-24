@@ -1,14 +1,13 @@
-// This is the main file for the project
 package main;
-
-// external resources
 
 // internal resources
 import ui.Menu;
+import util.TypeWriter;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Welcome to Snake! The best video game in the world!");
+        TypeWriter print = new TypeWriter();
+        print.SlowType("\nWelcome to Snake! The best video game in the world!\n"); // Adjust the delay as needed
 
         new Menu();
     }
