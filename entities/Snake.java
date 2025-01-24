@@ -1,6 +1,9 @@
 package entities;
 
+// external resources
 import java.util.LinkedList;
+
+// internal resources
 
 public class Snake {
     // Linked list

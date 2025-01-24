@@ -1,5 +1,9 @@
 package entities;
 
+// external resources
+
+// internal resources
+
 public class Food {
     int x, y;
 

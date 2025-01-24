@@ -1,5 +1,9 @@
 package ui;
 
+// external resources
+
+// internal resources
+
 public class GameDisplay {
     // Print game screen (default 10 x 10 for now)
     public void screen() {
