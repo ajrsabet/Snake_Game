@@ -2,12 +2,16 @@
 // We can start with turn based and change it to time based later
 package main;
 
+// external resources
+import javafx.scene.control.Menu;
+
+// internal resources
 import ui.*;
 
 public class GameLoop {
     // Create connection to methods in other packages
     GameDisplay display = new ui.GameDisplay();
-    Console console = new ui.Console();
+    GameControlInput console = new ui.GameControlInput();
 
     public GameLoop() {
         // while session == true
@@ -24,7 +28,8 @@ public class GameLoop {
 
     }
 
-    public void stop() {
-
+    public void pause() {
+        new Menu();
     }
+
 }

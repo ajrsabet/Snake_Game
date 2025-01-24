@@ -2,7 +2,11 @@
 // entities on the game screen. This will include the snake segments and
 // food. 
 
-package ui;
+// external resources
+
+// internal resources
+
+package data;
 
 public class Grid {
     public Grid() {
