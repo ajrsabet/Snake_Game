@@ -1,5 +1,9 @@
 package entities;
 
+// external resources
+
+// internal resources
+
 class Segment {
     int x, y;
     char direction;

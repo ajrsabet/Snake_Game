@@ -2,15 +2,24 @@
 // split into multiple parts when we develop the GUI
 package ui;
 
-public class Console {
-    // Prompt user to start game or see high score
+// external resources
+import java.util.Scanner;
 
-    // Prompt user for move, pause, or quit
+// internal resources
+
+public class GameControlInput {
     // I'm not sure that we can use arrow input in the console so
     // we may need to use A (left turn), W (forward), D (right turn)
-    public void Move(char ch) {
+
+    public GameControlInput() {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt user for move, pause, or quit
+        System.out.print("Enter your choice: ");
+        char input = scanner.next().charAt(0);
+
         // maybe case switch
-        switch (ch) {
+        switch (input) {
             case 'a': // move left
 
                 break;
@@ -24,16 +33,14 @@ public class Console {
                 break;
 
             case 'p': // pause and return to menu
+                new Menu();
 
                 break;
 
             default:
                 break;
         }
-    }
 
-    // display menu
-    public void Menu() {
-
+        scanner.close();
     }
 }

@@ -1,11 +1,16 @@
-// This is the main file for the project
-
 package main;
+
+// internal resources
+import ui.Menu;
+import util.TypeWriter;
 
 public class Main {
     public static void main(String[] args) {
-        GameLoop gameLoop = new GameLoop();
-        gameLoop.start(); // Assuming 'start' is the method to start the game loop
+        TypeWriter print = new TypeWriter();
+        print.SlowType("\nWelcome to Snake! The best video game in the world!\n"); // Adjust the delay as needed
 
+        new Menu();
     }
 }
+// test
+//test 2
