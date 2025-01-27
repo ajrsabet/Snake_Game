@@ -13,26 +13,29 @@ public class Snake {
         cells.add(head);
     }
 
+    // return snake head location
+    public Cell getHead() {
+        return head;
+    }
+
     // method for moving snake
     public void move(Cell cell) {
-        // head = cell
-        // if head == cells[1]
-            // return? (do nothing)
-        // if cell is empty
-            // add cell to snake
-            // remove tail
-        // if cell is food
-            // add cell to snake
-        // if cell is snake
-            // end game
-
-        updateGrid();
+        if (cell != cells.get(1)) {
+            head = cell;
+            if (cell.getFill() == "empty") {
+                cells.addFirst(head);
+                cells.getFirst().setFill("snake");
+                cells.getLast().setFill("empty");
+                cells.removeLast();
+            } else if (cell.getFill() == "food") {
+                cells.addFirst(head);
+                cells.getFirst().setFill("snake");
+            }
+            // if cell is snake
+                // end game
+        }
     }
 
-    public void updateGrid() {
-        // for each cell in snake
-            // set cell fill to snake
-    }
 
 
 }

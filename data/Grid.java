@@ -5,6 +5,7 @@ public class Grid {
     final int cols;
     private final Cell[][] cells;
 
+    // constructor
     public Grid(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
@@ -27,17 +28,18 @@ public class Grid {
         return cells[row][col].getFill();
     }
 
-    // will reset the board per snake, food, empty -- I amy split this up into multiple functions as the full game logic becomes more clear
+    // sets a cell to be food
     public void setCellFill() {
-        // variable RANDOM x2 for row / column coordinates
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                // if cell fill != snake
-                    // set cell fill to empty
-                // whatever function eventually draws snake
-                // if cell[RANDOM][RANDOM] != snake
-                    // set cell[RANDOM][RANDOM] as food
-            }
+        int x = (int) (Math.random() * 10);
+        int y = (int) (Math.random() * 10);
+        while (x >= 10 || y >= 10) {
+            x = (int) (Math.random() * 10);
+            y = (int) (Math.random() * 10);
+        }
+        if (cells[x][y].getFill() == "empty") {
+            cells[x][y].setFill("food");
+        } else {
+            setCellFill();
         }
     }
 }
