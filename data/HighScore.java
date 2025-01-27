@@ -1,22 +1,37 @@
 package data;
 
+import java.lang.reflect.Type;
 // external resources
 import java.util.Scanner;
 
 // internal resources
+import ui.Menu;
+import util.TypeWriter;
 
 public class HighScore {
-    // private int[] scoreBoard = new int[5];
-    private int[] scoreBoard = { 5, 4, 3, 2, 1 };
+    private static final HighScore instance = new HighScore();
+    private static final TypeWriter print = new TypeWriter();
+    private final int[] scoreBoard = { 5, 4, 3, 2, 1 };
 
-    public HighScore() {
+    private HighScore() {
+        // Private constructor to prevent instantiation
+    }
+
+    public static HighScore getInstance() {
+        return instance;
+    }
+
+    public void display() {
         Scanner input = new Scanner(System.in);
         // List high scores for session
-        System.out.println("High Score List: ");
+        print.SlowType("High Score List: ");
         for (int i = 0; i < scoreBoard.length; i++) {
-            System.out.println((i + 1) + ": " + scoreBoard[i]);
+            print.SlowType((i + 1) + ": " + scoreBoard[i]);
         }
-
+        print.SlowType("Enter any key to return to the menu: ");
+        input.nextLine();
+        new Menu();
+        input.close();
     }
 
     // Test new score to see if it makes it on the score board

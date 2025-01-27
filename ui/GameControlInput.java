@@ -21,20 +21,24 @@ public class GameControlInput {
         // maybe case switch
         switch (input) {
             case 'a': // move left
-
+                // snake.move(left);
+                System.out.println("Moving left");
                 break;
 
-            case 'w': // move forward
+            case 's': // move down
+                System.out.println("Moving down");
+                break;
 
+            case 'w': // move up
+                System.out.println("Moving up");
                 break;
 
             case 'd': // move right
-
+                System.out.println("Moving right");
                 break;
 
             case 'p': // pause and return to menu
                 new Menu();
-
                 break;
 
             default:

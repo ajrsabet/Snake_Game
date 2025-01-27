@@ -1,3 +1,6 @@
+// This class represents the main menu of the game. It provides options to start a new game, 
+// resume a current game, view high scores, or quit the program. The menu is displayed 
+// using a typewriter effect for better user experience.
 package ui;
 
 // external resources
@@ -7,10 +10,14 @@ import java.util.Scanner;
 import main.GameLoop;
 import util.TypeWriter;
 import data.HighScore;
+import data.Grid;
 
 public class Menu {
+    // Create connection to methods in other packages
+    private final HighScore highScore = HighScore.getInstance();
+    private final TypeWriter print = new TypeWriter();
+
     public Menu() {
-        TypeWriter print = new TypeWriter();
         print.SlowType("\nMENU");
         print.SlowType("_____________________________\n");
         print.SlowType("1. Start new game");
@@ -25,7 +32,10 @@ public class Menu {
         switch (input) {
             case 1: // New Game
                 print.SlowType("Starting game...\n");
-                // Add logic to start the game
+
+                // Create a new 10 x 10 grid
+                new Grid(10, 10);
+
                 GameLoop gameLoop = new GameLoop();
                 gameLoop.start(); // Assuming 'start' is the method to start the game loop
 
@@ -36,8 +46,7 @@ public class Menu {
                 break;
             case 3: // See High Score
                 print.SlowType("Displaying high scores...\n");
-                HighScore highScore = new HighScore();
-                // Add logic to display high scores
+                highScore.display();
                 break;
             case 4: // Quit Program
                 print.SlowType("Thanks for playing the Snake game! Goodbye!\n");
