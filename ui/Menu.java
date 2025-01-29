@@ -4,61 +4,85 @@
 package ui;
 
 // external resources
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 // internal resources
 import main.GameLoop;
 import util.TypeWriter;
-import data.HighScore;
-import data.Grid;
+import data.*;
 
 public class Menu {
     // Create connection to methods in other packages
     private final HighScore highScore = HighScore.getInstance();
+    private static final Menu instance = new Menu();
     private final TypeWriter print = new TypeWriter();
+    private final Grid grid = new Grid(10, 15);
+    private final Snake snake;
+    private final GameLoop gameLoop;
+    private boolean session = true;
+    private Scanner input;
+    // private boolean currentGame = false;
 
-    public Menu() {
-        print.SlowType("\nMENU");
-        print.SlowType("_____________________________\n");
-        print.SlowType("1. Start new game");
-        print.SlowType("2. Resume current game");
-        print.SlowType("3. See high scores");
-        print.SlowType("4. Quit Program\n");
+    // Constructor
+    private Menu() {
+        // initialize the snake with 3 cells
+        List<Cell> initialCells = new ArrayList<>();
+        initialCells.add(grid.getCells()[4][4]);
+        initialCells.add(grid.getCells()[4][5]);
+        initialCells.add(grid.getCells()[4][6]);
+        snake = new Snake(initialCells);
 
-        Scanner scanner = new Scanner(System.in);
-        print.SlowType("Enter your choice: \n");
-        int input = scanner.nextInt();
+        // Place the first instance of food
+        grid.placeFood();
 
-        switch (input) {
-            case 1: // New Game
-                print.SlowType("Starting game...\n");
+        gameLoop = new GameLoop(grid, snake);
+    }
 
-                // Create a new 10 x 10 grid
-                new Grid(10, 10);
+    public static Menu getInstance() {
+        return instance;
+    }
 
-                GameLoop gameLoop = new GameLoop();
-                gameLoop.start(); // Assuming 'start' is the method to start the game loop
+    public void display() {
+        input = new Scanner(System.in);
+        while (session) {
 
-                break;
-            case 2: // Resume Current Game
-                print.SlowType("Resuming current game...\n");
-                // Add logic to start the game
-                break;
-            case 3: // See High Score
-                print.SlowType("Displaying high scores...\n");
-                highScore.display();
-                break;
-            case 4: // Quit Program
-                print.SlowType("Thanks for playing the Snake game! Goodbye!\n");
-                System.exit(0);
-                break;
-            default:
-                print.SlowType("Invalid choice. Please try again.\n");
-                // Optionally, you can loop back to the menu
-                new Menu();
-                break;
+            print.SlowType("\nMENU");
+            print.SlowType("_____________________________\n");
+            print.SlowType("1. Start game/resume current game");
+            print.SlowType("2. See high scores");
+            print.SlowType("3. Quit Program\n");
+
+            print.SlowType("Enter your choice: \n");
+            int option = input.nextInt();
+
+            switch (option) {
+                case 1: // New Game
+
+                    print.SlowType("Starting game...\n");
+
+                    gameLoop.start(input); // Assuming 'start' is the method to start the game loop
+
+                    break;
+                case 2: // See High Score
+                    highScore.displayScoreBoard(input);
+                    print.SlowType("Enter any key to return to the menu: ");
+                    input.nextLine();
+                    display();
+                    break;
+                case 3: // Quit Program
+                    print.SlowType("Thanks for playing the Snake game! Goodbye!\n");
+                    System.exit(0);
+                    break;
+                default:
+                    print.SlowType("Invalid choice. Please try again.\n");
+                    // Optionally, you can loop back to the menu
+                    display();
+                    break;
+            }
+
         }
-
-        scanner.close();
+        input.close();
     }
 }

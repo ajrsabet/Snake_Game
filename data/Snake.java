@@ -1,16 +1,20 @@
 package data;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Snake {
     private LinkedList<Cell> cells;
     private Cell head;
-    
+
     // constructor
-    public Snake(Cell initial) {
+    public Snake(List<Cell> initialCells) {
         cells = new LinkedList<Cell>();
-        head = initial;
-        cells.add(head);
+        for (Cell cell : initialCells) {
+            cell.setFill("snake");
+            cells.add(cell);
+        }
+        head = cells.getFirst();
     }
 
     // return snake head location
@@ -19,23 +23,29 @@ public class Snake {
     }
 
     // method for moving snake
-    public void move(Cell cell) {
-        if (cell != cells.get(1)) {
-            head = cell;
-            if (cell.getFill() == "empty") {
-                cells.addFirst(head);
-                cells.getFirst().setFill("snake");
-                cells.getLast().setFill("empty");
-                cells.removeLast();
-            } else if (cell.getFill() == "food") {
-                cells.addFirst(head);
-                cells.getFirst().setFill("snake");
+    public boolean move(Cell thisCell) {
+
+        if (thisCell.getCoordinates() != cells.get(1).getCoordinates()) {
+            head = thisCell;
+            if (thisCell.getFill().equals("empty")) {
+                cells.add(head);
+                cells.getFirst().setFill("empty");
+                cells.getLast().setFill("snake");
+                cells.removeFirst();
+                return false;
+            } else if (thisCell.getFill().equals("food")) {
+                cells.add(head);
+                head.setFill("snake");
+                return true;
+            } else {
+                System.out.println("Game Over");
+                return false;
             }
             // if cell is snake
-                // end game
+            // end game
+        } else {
+            return false;
         }
     }
-
-
 
 }
