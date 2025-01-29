@@ -2,7 +2,7 @@ package util;
 
 public class TypeWriter {
     public void SlowType(String line) {
-        int delay = 10;
+        int delay = 1;
 
         for (int i = 0; i < line.length(); i++) {
             System.out.print(line.charAt(i));
