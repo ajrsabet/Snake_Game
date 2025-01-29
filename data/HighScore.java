@@ -37,7 +37,7 @@ public class HighScore {
             thisBoard = scoreBoard;
         }
         for (int i = 0; i < thisBoard.length; i++) {
-            if (currentScore == thisBoard[i]) {
+            if (currentScore > 0 && currentScore == thisBoard[i]) {
                 print.SlowType((i + 1) + ": " + thisBoard[i] + " current score");
             } else {
                 print.SlowType((i + 1) + ": " + thisBoard[i]);
