@@ -18,9 +18,9 @@ public class Menu {
     private final HighScore highScore = HighScore.getInstance();
     private static final Menu instance = new Menu();
     private final TypeWriter print = new TypeWriter();
-    private final Grid grid = new Grid(10, 15);
-    private final Snake snake;
-    private final GameLoop gameLoop;
+    private Grid grid = new Grid(10, 15);
+    private Snake snake;
+    private GameLoop gameLoop;
     private boolean session = true;
     private Scanner input;
     // private boolean currentGame = false;
@@ -84,5 +84,18 @@ public class Menu {
 
         }
         input.close();
+    }
+
+    // Reset game
+    public void resetGame() {
+        // Reset the game
+        grid = new Grid(10, 15);
+        List<Cell> initialCells = new ArrayList<>();
+        initialCells.add(grid.getCells()[4][4]);
+        initialCells.add(grid.getCells()[4][5]);
+        initialCells.add(grid.getCells()[4][6]);
+        snake = new Snake(initialCells);
+        grid.placeFood();
+        gameLoop.newGame(grid, snake);
     }
 }
