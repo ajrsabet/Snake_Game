@@ -1,5 +1,7 @@
 package data;
 
+import java.util.Random;
+
 public class Grid {
     final int rows;
     final int cols;
@@ -23,23 +25,44 @@ public class Grid {
         return cells;
     }
 
+    // returns memory address of all cells on board
+    public Cell getCell(int row, int col) {
+        return cells[row][col];
+    }
+
+    // Returns the number of rows
+    public int getRows() {
+        return rows;
+    }
+
+    // Returns the number of columns
+    public int getCols() {
+        return cols;
+    }
+
     // returns a string of what a particular cell is filled to
     public String getCellFill(int row, int col) {
         return cells[row][col].getFill();
     }
 
-    // sets a cell to be food
+    // Sets a cell to be food at a random empty position
+    public void placeFood() {
+        Random random = new Random();
+        int row, col;
+        do {
+            row = random.nextInt(rows);
+            col = random.nextInt(cols);
+        } while (!cells[row][col].getFill().equals("empty"));
+        cells[row][col].setFill("food");
+    }
+
     public void setCellFill() {
-        int x = (int) (Math.random() * 10);
-        int y = (int) (Math.random() * 10);
-        while (x >= 10 || y >= 10) {
-            x = (int) (Math.random() * 10);
-            y = (int) (Math.random() * 10);
+        int x = (int) (Math.random() * rows);
+        int y = (int) (Math.random() * cols);
+        while (cells[x][y].getFill().equals("snake")) {
+            x = (int) (Math.random() * rows);
+            y = (int) (Math.random() * cols);
         }
-        if (cells[x][y].getFill() == "empty") {
-            cells[x][y].setFill("food");
-        } else {
-            setCellFill();
-        }
+        cells[x][y].setFill("food");
     }
 }
